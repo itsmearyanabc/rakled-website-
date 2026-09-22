@@ -1,0 +1,221 @@
+/* ==========================================================================
+   MOTION
+
+   Two safety rules govern this entire layer:
+
+   1. NO-JS SAFETY. The hidden pre-reveal state is scoped to .rc-js, which
+      is set by an inline script in <head>. If JavaScript fails or is
+      blocked, nothing is ever hidden and the page reads normally.
+
+   2. REDUCED-MOTION SAFETY. Under prefers-reduced-motion: reduce every
+      element resolves to its final state immediately. Users who disable
+      motion lose the animation, never the content.
+   ========================================================================== */
+
+/* --- Scroll reveal --------------------------------------------------------
+   One-shot: the observer unobserves after firing, so nothing re-animates
+   when the user scrolls back up. */
+
+.rc-js .rc-reveal {
+  opacity: 0;
+  transform: translateY(var(--rc-reveal-shift));
+  transition:
+    opacity var(--rc-dur-reveal) var(--rc-ease-out),
+    transform var(--rc-dur-reveal) var(--rc-ease-out);
+  transition-delay: calc(var(--rc-i, 0) * 80ms);
+  will-change: opacity, transform;
+}
+
+.rc-js .rc-reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* --- Masked line reveal ---------------------------------------------------
+   Used for the hero headline. Each line sits in an overflow-hidden frame
+   and rises into view. */
+
+.rc-lines { display: block; }
+
+/* The clip box is padded so it never crops an ascender or a descender,
+   then pulled back by matching negative margins so the visual line
+   rhythm is exactly the line-height. */
+.rc-line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.08em 0.16em;
+  margin-block: -0.08em -0.16em;
+}
+.rc-line > span { display: block; }
+
+.rc-js .rc-line > span {
+  transform: translateY(130%);
+  transition: transform var(--rc-dur-hero) var(--rc-ease-out);
+  transition-delay: calc(var(--rc-i, 0) * 90ms);
+}
+.rc-js .is-revealed .rc-line > span,
+.rc-js .rc-line.is-revealed > span { transform: translateY(0); }
+
+/* --- Hero ----------------------------------------------------------------
+   The image begins slightly zoomed in and settles. Nothing else moves
+   until it has started. */
+
+/* Photography cross-dissolves. The active frame also drifts slowly
+   inward across its whole turn, which keeps a still image from feeling
+   frozen without ever announcing itself as an effect. */
+
+.rc-js .rc-hero__slide {
+  transition: opacity var(--rc-dur-crossfade) var(--rc-ease-inout);
+}
+
+.rc-js .rc-hero__slide picture,
+.rc-js .rc-hero__slide .rc-placeholder {
+  transform: scale(1.08);
+  transition: transform var(--rc-dur-kenburns) linear;
+}
+
+.rc-js .rc-hero.is-ready .rc-hero__slide.is-active picture,
+.rc-js .rc-hero.is-ready .rc-hero__slide.is-active .rc-placeholder {
+  transform: scale(1);
+}
+
+/* The tagline uses the opposite language: no fade at all. Lines leave
+   upward and arrive from below, each masked by its own frame and offset
+   from the last. Nothing about it resembles the dissolve behind it.
+
+   The resting state carries NO transition, so when a leaving tagline is
+   reset it snaps from above the mask back to below it. Both positions
+   are outside the clip box, so the reset is never seen. */
+
+.rc-js .rc-tagline { pointer-events: none; }
+.rc-js .rc-tagline.is-active { pointer-events: auto; }
+
+.rc-js .rc-tagline__line > span { transform: translateY(130%); }
+
+.rc-js .rc-hero.is-ready .rc-tagline.is-active .rc-tagline__line > span {
+  transform: translateY(0);
+  transition: transform var(--rc-dur-tagline-in) var(--rc-ease-out);
+  transition-delay: calc(var(--rc-i, 0) * 90ms);
+}
+
+.rc-js .rc-tagline.is-leaving .rc-tagline__line > span {
+  transform: translateY(-130%);
+  transition: transform var(--rc-dur-tagline-out) var(--rc-ease-inout);
+  transition-delay: calc(var(--rc-i, 0) * 60ms);
+}
+
+.rc-hero__cue { transition: opacity var(--rc-dur-standard) var(--rc-ease-out); }
+.rc-hero__cue.is-hidden { opacity: 0; pointer-events: none; }
+
+/* --- Process progression --------------------------------------------------
+   A single hairline fills amber as the user moves through the stages. */
+
+/* Generic progress track. Any element using it must establish its own
+   positioning context; the process rail does so by being absolute. */
+.rc-progress {
+  background: var(--rc-on-surface-line);
+}
+.rc-progress__fill {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  background: var(--rc-amber);
+  transition: height var(--rc-dur-standard) linear,
+              width var(--rc-dur-standard) linear;
+}
+
+.rc-step { transition: opacity var(--rc-dur-standard) var(--rc-ease-out); }
+.rc-js .rc-step { opacity: 0.38; }
+.rc-js .rc-step.is-active { opacity: 1; }
+
+/* --- Counters -------------------------------------------------------------
+   Reserve the final width so the layout does not shift while counting. */
+.rc-counter { font-variant-numeric: tabular-nums; }
+
+/* --- Header --------------------------------------------------------------- */
+
+.rc-header {
+  transition:
+    background-color var(--rc-dur-standard) var(--rc-ease-out),
+    color var(--rc-dur-standard) var(--rc-ease-out),
+    border-color var(--rc-dur-standard) var(--rc-ease-out),
+    transform var(--rc-dur-standard) var(--rc-ease-out);
+}
+
+/* --- Mobile navigation overlay -------------------------------------------- */
+
+.rc-nav-overlay {
+  transform: translateY(-100%);
+  visibility: hidden;
+  transition:
+    transform var(--rc-dur-reveal) var(--rc-ease-inout),
+    visibility 0s linear var(--rc-dur-reveal);
+}
+.rc-nav-overlay.is-open {
+  transform: translateY(0);
+  visibility: visible;
+  transition:
+    transform var(--rc-dur-reveal) var(--rc-ease-inout),
+    visibility 0s linear 0s;
+}
+
+.rc-nav-overlay__item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--rc-dur-standard) var(--rc-ease-out),
+    transform var(--rc-dur-standard) var(--rc-ease-out);
+}
+.rc-nav-overlay.is-open .rc-nav-overlay__item {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(140ms + var(--rc-i, 0) * 60ms);
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   Everything resolves to its final state. Content is never withheld.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .rc-js .rc-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .rc-js .rc-line > span { transform: none !important; }
+
+  /* No dissolve, no drift, no rotation. hero.js does not start the
+     timer at all, so the hero is simply slide one, held. Every other
+     tagline is removed from the layout rather than parked off-mask,
+     because with transforms neutralised they would otherwise stack
+     on top of each other. */
+  .rc-js .rc-hero__slide picture,
+  .rc-js .rc-hero__slide .rc-placeholder { transform: none !important; }
+
+  .rc-js .rc-tagline__line > span { transform: none !important; }
+  .rc-js .rc-tagline:not(.is-active) { display: none; }
+
+  .rc-zoom:hover img,
+  a:hover .rc-zoom img { transform: none !important; }
+
+  /* All process stages read as equals: no progressive dimming. */
+  .rc-js .rc-step { opacity: 1 !important; }
+
+  .rc-card:hover,
+  .rc-card:focus-visible { transform: none !important; }
+
+  .rc-nav-overlay__item { opacity: 1 !important; transform: none !important; }
+}

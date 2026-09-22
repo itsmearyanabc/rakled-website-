@@ -1,0 +1,17 @@
+/*
+Theme Name:   Rian Cullet
+Theme URI:    https://riancullet.com/
+Author:       Rian Cullet
+Description:  Bespoke WordPress theme for Rian Cullet, a Delhi-based glass cullet collection, sorting, processing and recycling company established in 1995. Minimal, editorial, performance-focused. No page builder, no framework, no JavaScript libraries.
+Version:      1.0.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.0
+License:      GPL-2.0-or-later
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  rian-cullet
+Tags:         custom-colors, custom-menu, block-patterns, accessibility-ready
+
+This file carries the theme header only.
+All styles live in assets/css/ and are enqueued in that order from inc/enqueue.php.
+*/

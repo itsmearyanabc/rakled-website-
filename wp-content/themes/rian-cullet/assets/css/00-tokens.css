@@ -1,0 +1,185 @@
+/* ==========================================================================
+   RIAN CULLET — DESIGN TOKENS
+   Single source of truth. Nothing below this file hard-codes a value.
+   ========================================================================== */
+
+:root {
+
+  /* --- COLOUR -----------------------------------------------------------
+     Brand palette. Warm white dominates; green and charcoal carry the
+     storytelling sections; amber is an accent and never a surface.        */
+
+  --rc-paper:       #F7F7F2;   /* warm white   — dominant background      */
+  --rc-ink:         #111412;   /* deep charcoal — primary text            */
+  --rc-green:       #173C2C;   /* deep glass green — storytelling only    */
+  --rc-amber:       #C99A3D;   /* accent                                  */
+  --rc-stone:       #D9D8D0;   /* secondary neutral                       */
+
+  /* Derived, contrast-verified against their intended background.
+     Ratios measured with the WCAG 2.1 relative-luminance formula.        */
+
+  --rc-ink-muted:   #5A605B;   /* 6.0:1 on paper  — secondary body text   */
+  --rc-amber-ink:   #7A5A1E;   /* 5.9:1 on paper  — amber-toned TEXT      */
+  --rc-green-deep:  #0E261C;   /* layering beneath --rc-green             */
+  --rc-paper-muted: rgba(247, 247, 242, 0.72); /* secondary text on dark  */
+
+  /* AMBER CONTRAST RULE — enforced throughout the system.
+     #C99A3D on #F7F7F2 measures 2.39:1 and fails even the 3:1 large-text
+     threshold. On light backgrounds amber is therefore DECORATIVE ONLY:
+     rules, dots, underlines, borders, hover accents. Never text.
+     On #173C2C it measures 4.75:1 and passes AA for normal text.
+     For amber-coloured text on light, use --rc-amber-ink.                */
+
+  --rc-hairline:      rgba(17, 20, 18, 0.14);
+  --rc-hairline-dark: rgba(247, 247, 242, 0.18);
+  --rc-focus:         var(--rc-ink);
+  --rc-focus-dark:    var(--rc-paper);
+
+  /* Scrim for text laid over photography. Bottom-weighted so the image
+     stays readable as an image and the type stays readable as type.      */
+  --rc-scrim: linear-gradient(
+    to top,
+    rgba(10, 13, 11, 0.88) 0%,
+    rgba(10, 13, 11, 0.72) 26%,
+    rgba(10, 13, 11, 0.46) 52%,
+    rgba(10, 13, 11, 0.22) 74%,
+    rgba(10, 13, 11, 0.08) 100%
+  );
+
+  /* --- TYPEFACES --------------------------------------------------------
+     Display serif is restricted to >=40px (H1, H2, large statements)
+     because its high stroke contrast turns thin at small sizes.          */
+
+  --rc-font-display: "Instrument Serif", "Iowan Old Style",
+                     "Palatino Linotype", Palatino, Georgia,
+                     "Times New Roman", serif;
+  --rc-font-sans:    "Instrument Sans", -apple-system, BlinkMacSystemFont,
+                     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* --- TYPE SCALE (fluid) ---------------------------------------------- */
+
+  --rc-size-eyebrow: 0.75rem;
+  --rc-size-small:   0.875rem;
+  --rc-size-body:    1rem;
+  --rc-size-lede:    clamp(1.0625rem, 1rem    + 0.4vw, 1.25rem);
+  --rc-size-h3:      clamp(1.25rem,   1.1rem  + 0.7vw, 1.625rem);
+  --rc-size-h2:      clamp(2rem,      1.3rem  + 3.2vw, 4rem);
+  --rc-size-h1:      clamp(2.75rem,   1.6rem  + 5.2vw, 6.5rem);
+  --rc-size-mega:    clamp(4rem,      2rem    + 9vw,   10rem);
+
+  --rc-lh-display: 1.04;
+  --rc-lh-heading: 1.12;
+  --rc-lh-snug:    1.35;
+  --rc-lh-body:    1.7;
+
+  --rc-track-display: -0.03em;
+  --rc-track-tight:   -0.015em;
+  --rc-track-eyebrow:  0.14em;
+  --rc-track-label:    0.1em;
+
+  --rc-measure-body: 68ch;
+  --rc-measure-lede: 54ch;
+
+  /* --- SPACING (8px base) ---------------------------------------------- */
+
+  --rc-space-1:  0.25rem;   /*   4 */
+  --rc-space-2:  0.5rem;    /*   8 */
+  --rc-space-3:  0.75rem;   /*  12 */
+  --rc-space-4:  1rem;      /*  16 */
+  --rc-space-5:  1.5rem;    /*  24 */
+  --rc-space-6:  2rem;      /*  32 */
+  --rc-space-7:  3rem;      /*  48 */
+  --rc-space-8:  4rem;      /*  64 */
+  --rc-space-9:  6rem;      /*  96 */
+  --rc-space-10: 8rem;      /* 128 */
+  --rc-space-11: 10rem;     /* 160 */
+
+  /* Vertical rhythm for full sections. */
+  --rc-section-y: clamp(5rem, 3rem + 8vw, 11rem);
+
+  /* --- LAYOUT ----------------------------------------------------------- */
+
+  --rc-max-wide:    1440px;
+  --rc-max-content: 1200px;
+  --rc-max-text:    760px;
+  --rc-gutter:      clamp(1.25rem, 4vw, 3rem);
+  --rc-header-h:    clamp(4.5rem, 4rem + 1.4vw, 5.5rem);
+
+  /* --- GEOMETRY ---------------------------------------------------------
+     Radius is 0 by design. Sharp corners are the single strongest
+     anti-generic decision in this system. Inputs get 2px for affordance. */
+
+  --rc-radius:       0;
+  --rc-radius-input: 2px;
+  --rc-border:       1px;
+
+  /* --- MOTION ------------------------------------------------------------ */
+
+  --rc-dur-micro:    200ms;
+  --rc-dur-standard: 400ms;
+  --rc-dur-reveal:   700ms;
+  --rc-dur-hero:     1200ms;
+  --rc-dur-count:    1400ms;
+
+  /* Hero rotation. The image dissolve and the tagline change are given
+     different durations and different easings on purpose, so the two
+     never read as one effect. */
+  --rc-slide-hold:     6500ms;
+  --rc-dur-crossfade:  1600ms;
+  --rc-dur-kenburns:   9000ms;
+  --rc-dur-tagline-in:  820ms;
+  --rc-dur-tagline-out: 520ms;
+
+  --rc-ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --rc-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --rc-reveal-shift: 24px;
+  --rc-zoom-hover:   1.04;
+  --rc-zoom-hero:    1.06;
+
+  /* --- LAYERING ---------------------------------------------------------- */
+
+  --rc-z-base:    1;
+  --rc-z-scrim:   2;
+  --rc-z-content: 3;
+  --rc-z-overlay: 200;
+  /* The header sits ABOVE the mobile overlay on purpose: the burger is
+     also the close control, so burying it under the overlay would leave
+     Escape as the only way out. */
+  --rc-z-header:  300;
+}
+
+/* --- SURFACE CONTEXTS ---------------------------------------------------
+   Sections declare a surface; every component inside reads these four
+   variables instead of naming a colour. This is what lets buttons, rules
+   and focus rings invert correctly on dark sections with no extra CSS.   */
+
+.rc-surface-paper {
+  --rc-surface-bg:       var(--rc-paper);
+  --rc-on-surface:       var(--rc-ink);
+  --rc-on-surface-muted: var(--rc-ink-muted);
+  --rc-on-surface-line:  var(--rc-hairline);
+  --rc-on-surface-focus: var(--rc-focus);
+  background-color: var(--rc-paper);
+  color: var(--rc-on-surface);
+}
+
+.rc-surface-green {
+  --rc-surface-bg:       var(--rc-green);
+  --rc-on-surface:       var(--rc-paper);
+  --rc-on-surface-muted: var(--rc-paper-muted);
+  --rc-on-surface-line:  var(--rc-hairline-dark);
+  --rc-on-surface-focus: var(--rc-focus-dark);
+  background-color: var(--rc-green);
+  color: var(--rc-on-surface);
+}
+
+.rc-surface-ink {
+  --rc-surface-bg:       var(--rc-ink);
+  --rc-on-surface:       var(--rc-paper);
+  --rc-on-surface-muted: var(--rc-paper-muted);
+  --rc-on-surface-line:  var(--rc-hairline-dark);
+  --rc-on-surface-focus: var(--rc-focus-dark);
+  background-color: var(--rc-ink);
+  color: var(--rc-on-surface);
+}

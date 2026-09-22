@@ -1,0 +1,17 @@
+# WordPress core + uploads are not part of this repo.
+# Only the custom theme is versioned.
+wp-content/uploads/
+wp-content/plugins/
+wp-content/upgrade/
+wp-core/
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Build output
+node_modules/
+*.log

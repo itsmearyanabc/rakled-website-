@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "color": {
+      "custom": false,
+      "customDuotone": false,
+      "customGradient": false,
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "defaultDuotone": false,
+      "palette": [
+        { "slug": "paper", "color": "#F7F7F2", "name": "Warm White" },
+        { "slug": "ink",   "color": "#111412", "name": "Deep Charcoal" },
+        { "slug": "green", "color": "#173C2C", "name": "Deep Glass Green" },
+        { "slug": "amber", "color": "#C99A3D", "name": "Amber (accent only)" },
+        { "slug": "stone", "color": "#D9D8D0", "name": "Stone" }
+      ]
+    },
+    "typography": {
+      "customFontSize": false,
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "slug": "display",
+          "name": "Display Serif",
+          "fontFamily": "\"Instrument Serif\", \"Iowan Old Style\", \"Palatino Linotype\", Palatino, Georgia, \"Times New Roman\", serif"
+        },
+        {
+          "slug": "sans",
+          "name": "Body Sans",
+          "fontFamily": "\"Instrument Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif"
+        }
+      ],
+      "fontSizes": [
+        { "slug": "eyebrow", "name": "Eyebrow", "size": "0.75rem" },
+        { "slug": "small",   "name": "Small",   "size": "0.875rem" },
+        { "slug": "body",    "name": "Body",    "size": "1rem" },
+        { "slug": "lede",    "name": "Lede",    "size": "clamp(1.0625rem, 1rem + 0.4vw, 1.25rem)" },
+        { "slug": "h3",      "name": "Heading 3", "size": "clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem)" },
+        { "slug": "h2",      "name": "Heading 2", "size": "clamp(2rem, 1.3rem + 3.2vw, 4rem)" },
+        { "slug": "h1",      "name": "Heading 1", "size": "clamp(2.75rem, 1.6rem + 5.2vw, 6.5rem)" }
+      ]
+    },
+    "spacing": {
+      "customSpacingSize": false,
+      "units": ["px", "rem", "vw", "%"],
+      "spacingSizes": [
+        { "slug": "30", "name": "X-Small", "size": "1rem" },
+        { "slug": "40", "name": "Small",   "size": "1.5rem" },
+        { "slug": "50", "name": "Medium",  "size": "3rem" },
+        { "slug": "60", "name": "Large",   "size": "6rem" },
+        { "slug": "70", "name": "X-Large", "size": "clamp(5rem, 3rem + 8vw, 11rem)" }
+      ]
+    },
+    "layout": {
+      "contentSize": "1200px",
+      "wideSize": "1440px"
+    },
+    "border":  { "radius": false },
+    "shadow":  { "defaultPresets": false },
+    "blocks":  { "core/button": { "border": { "radius": false } } }
+  },
+  "styles": {
+    "color": { "background": "#F7F7F2", "text": "#111412" },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--sans)",
+      "fontSize": "1rem",
+      "lineHeight": "1.7"
+    }
+  }
+}

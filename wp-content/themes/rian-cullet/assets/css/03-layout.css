@@ -1,0 +1,84 @@
+/* ==========================================================================
+   LAYOUT - containers, sections, editorial grids
+   ========================================================================== */
+
+.rc-container {
+  width: 100%;
+  max-width: var(--rc-max-content);
+  margin-inline: auto;
+  padding-inline: var(--rc-gutter);
+}
+
+.rc-container--wide { max-width: var(--rc-max-wide); }
+.rc-container--text { max-width: var(--rc-max-text); }
+
+/* Full-bleed.
+   This element must be placed as a sibling of .rc-container, not inside
+   it. The usual 100vw trick is avoided deliberately: 100vw includes the
+   classic scrollbar, so it overflows the page by the scrollbar width and
+   produces exactly the horizontal scroll this design must not have. */
+.rc-bleed {
+  width: 100%;
+  margin-inline: 0;
+}
+
+.rc-section { padding-block: var(--rc-section-y); }
+.rc-section--tight { padding-block: clamp(3.5rem, 2rem + 5vw, 7rem); }
+.rc-section--flush-top { padding-block-start: 0; }
+
+/* --- Section heading block ------------------------------------------------ */
+
+.rc-section-head { max-width: 46rem; }
+.rc-section-head > * + * { margin-block-start: var(--rc-space-5); }
+.rc-section-head--center { margin-inline: auto; text-align: center; }
+.rc-section-head--center .rc-eyebrow { justify-content: center; }
+.rc-section-head--center .rc-lede { margin-inline: auto; }
+
+/* --- Editorial splits -----------------------------------------------------
+   Asymmetry is the default. A symmetric 6/6 is used only where the two
+   sides genuinely carry equal weight, such as the two product cards. */
+
+.rc-split {
+  display: grid;
+  gap: clamp(var(--rc-space-7), 6vw, var(--rc-space-10));
+  align-items: start;
+}
+
+@media (min-width: 62rem) {
+  .rc-split--7-5 { grid-template-columns: 7fr 5fr; }
+  .rc-split--5-7 { grid-template-columns: 5fr 7fr; }
+  .rc-split--6-6 { grid-template-columns: 1fr 1fr; }
+  .rc-split--4-8 { grid-template-columns: 4fr 8fr; }
+  .rc-split--sticky > .rc-split__aside {
+    position: sticky;
+    top: calc(var(--rc-header-h) + var(--rc-space-7));
+  }
+}
+
+/* --- Auto column sets ----------------------------------------------------- */
+
+.rc-cols { display: grid; gap: var(--rc-space-7); }
+
+@media (min-width: 40rem) { .rc-cols--4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 48rem) { .rc-cols--2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 48rem) { .rc-cols--3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 62rem) { .rc-cols--3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 62rem) { .rc-cols--4 { grid-template-columns: repeat(4, 1fr); } }
+
+/* --- Hairline rules ------------------------------------------------------- */
+
+.rc-rule {
+  border: 0;
+  border-block-start: var(--rc-border) solid var(--rc-on-surface-line, var(--rc-hairline));
+  margin: 0;
+}
+
+/* Columns separated by hairlines rather than by cards. */
+.rc-ruled-cols > * {
+  padding-block-start: var(--rc-space-5);
+  border-block-start: var(--rc-border) solid var(--rc-on-surface-line);
+}
+
+.rc-stack > * + * { margin-block-start: var(--rc-space-5); }
+.rc-stack--sm > * + * { margin-block-start: var(--rc-space-3); }
+.rc-stack--lg > * + * { margin-block-start: var(--rc-space-7); }

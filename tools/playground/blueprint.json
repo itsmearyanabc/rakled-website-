@@ -1,0 +1,26 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "meta": {
+    "title": "Rian Cullet - local WordPress",
+    "author": "Rian Cullet",
+    "description": "Boots a throwaway WordPress with the Rian Cullet theme active, the six pages created, the static front page set and both menus built. Development tooling only; never deployed."
+  },
+  "landingPage": "/",
+  "steps": [
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "Rian Cullet",
+        "blogdescription": ""
+      }
+    },
+    {
+      "step": "activateTheme",
+      "themeFolderName": "rian-cullet"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require_once '/wordpress/wp-load.php'; global $wp_rewrite; $wp_rewrite->set_permalink_structure( '/%postname%/' ); require_once get_template_directory() . '/inc/starter-content.php'; rc_create_starter_content(); flush_rewrite_rules( false );"
+    }
+  ]
+}

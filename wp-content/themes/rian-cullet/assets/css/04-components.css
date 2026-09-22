@@ -1,0 +1,267 @@
+/* ==========================================================================
+   COMPONENTS - buttons, media, cards, forms
+
+   Every component reads --rc-on-surface-* rather than naming a colour,
+   so each one inverts automatically inside .rc-surface-green and
+   .rc-surface-ink with no variant classes.
+   ========================================================================== */
+
+/* --- Buttons --------------------------------------------------------------
+   Understated by design: square, compact, uppercase label, moving arrow.
+   There are no pill buttons anywhere in this system. */
+
+.rc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rc-space-3);
+  padding: 0.95rem 1.75rem;
+  border: var(--rc-border) solid transparent;
+  border-radius: var(--rc-radius);
+  font-size: var(--rc-size-eyebrow);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--rc-track-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--rc-dur-standard) var(--rc-ease-out),
+    color var(--rc-dur-standard) var(--rc-ease-out),
+    border-color var(--rc-dur-standard) var(--rc-ease-out);
+}
+
+.rc-btn__arrow {
+  display: inline-block;
+  transition: transform var(--rc-dur-standard) var(--rc-ease-out);
+}
+.rc-btn:hover .rc-btn__arrow,
+.rc-btn:focus-visible .rc-btn__arrow { transform: translateX(4px); }
+
+/* A filled button inverts its context: the surface foreground becomes
+   the fill, and the surface background becomes the label. Every context
+   that sets --rc-on-surface must therefore also set --rc-surface-bg. */
+.rc-btn--primary {
+  background-color: var(--rc-on-surface);
+  border-color: var(--rc-on-surface);
+  color: var(--rc-surface-bg, var(--rc-paper));
+}
+
+/* On light surfaces the hover state deepens to green. */
+.rc-surface-paper .rc-btn--primary:hover,
+.rc-surface-paper .rc-btn--primary:focus-visible {
+  background-color: var(--rc-green);
+  border-color: var(--rc-green);
+  color: var(--rc-paper);
+}
+
+/* On dark surfaces it warms to amber, which clears AA against ink. */
+.rc-surface-green .rc-btn--primary:hover,
+.rc-surface-green .rc-btn--primary:focus-visible,
+.rc-surface-ink .rc-btn--primary:hover,
+.rc-surface-ink .rc-btn--primary:focus-visible,
+.rc-hero .rc-btn--primary:hover,
+.rc-hero .rc-btn--primary:focus-visible {
+  background-color: var(--rc-amber);
+  border-color: var(--rc-amber);
+  color: var(--rc-ink);
+}
+
+.rc-btn--secondary {
+  background-color: transparent;
+  color: var(--rc-on-surface);
+  border-color: var(--rc-on-surface-line);
+}
+.rc-btn--secondary:hover,
+.rc-btn--secondary:focus-visible { border-color: var(--rc-on-surface); }
+
+/* Text link with an amber rule that draws in from the left. */
+.rc-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rc-space-2);
+  padding-block-end: var(--rc-space-2);
+  font-size: var(--rc-size-small);
+  font-weight: 600;
+  letter-spacing: var(--rc-track-label);
+  text-transform: uppercase;
+  color: var(--rc-on-surface);
+}
+.rc-link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 1px;
+  background: var(--rc-amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--rc-dur-standard) var(--rc-ease-out);
+}
+.rc-link:hover::after,
+.rc-link:focus-visible::after { transform: scaleX(1); }
+
+/* --- Media ----------------------------------------------------------------
+   Aspect ratio is declared on the frame, never on the image, so layout is
+   stable before the image decodes. This is what keeps CLS at zero. */
+
+.rc-figure {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--rc-stone);
+  border-radius: var(--rc-radius);
+}
+.rc-figure img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.rc-ratio-hero { aspect-ratio: 16 / 9; }
+.rc-ratio-portrait { aspect-ratio: 4 / 5; }
+.rc-ratio-panel { aspect-ratio: 3 / 4; }
+.rc-ratio-editorial { aspect-ratio: 3 / 2; }
+.rc-ratio-square { aspect-ratio: 1 / 1; }
+
+@media (max-width: 47.9375rem) {
+  .rc-ratio-hero { aspect-ratio: 4 / 5; }
+}
+
+/* Restrained hover zoom, clipped by the frame. */
+.rc-zoom img { transition: transform var(--rc-dur-reveal) var(--rc-ease-out); }
+.rc-zoom:hover img,
+a:hover .rc-zoom img,
+a:focus-visible .rc-zoom img { transform: scale(var(--rc-zoom-hover)); }
+
+.rc-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: var(--rc-z-scrim);
+  background: var(--rc-scrim);
+  pointer-events: none;
+}
+
+/* Placeholder shown until real photography is supplied. It is labelled
+   rather than decorative, so nobody mistakes it for a finished asset. */
+.rc-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--rc-space-2);
+  padding: var(--rc-space-5);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--rc-stone) 0 12px,
+    #E3E2DA 12px 24px
+  );
+  color: var(--rc-ink-muted);
+}
+.rc-placeholder__name {
+  font-size: var(--rc-size-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--rc-track-label);
+  text-transform: uppercase;
+}
+.rc-placeholder__note {
+  max-width: 34ch;
+  font-size: var(--rc-size-small);
+  line-height: 1.4;
+}
+
+/* --- Card -----------------------------------------------------------------
+   Used only where it genuinely improves hierarchy, i.e. the two product
+   cards. Everything else is separated by hairlines instead. */
+
+.rc-card {
+  position: relative;
+  display: block;
+  padding-block-end: var(--rc-space-6);
+  border-block-start: var(--rc-border) solid var(--rc-on-surface-line);
+  transition: transform var(--rc-dur-standard) var(--rc-ease-out);
+}
+.rc-card::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline-start: 0;
+  inline-size: 100%;
+  block-size: 1px;
+  background: var(--rc-amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--rc-dur-reveal) var(--rc-ease-out);
+}
+.rc-card:hover,
+.rc-card:focus-visible { transform: translateY(-6px); }
+.rc-card:hover::before,
+.rc-card:focus-visible::before { transform: scaleX(1); }
+
+.rc-card__body { padding-block-start: var(--rc-space-5); }
+.rc-card__body > * + * { margin-block-start: var(--rc-space-4); }
+
+/* --- Forms ---------------------------------------------------------------- */
+
+.rc-form { display: grid; gap: var(--rc-space-5); }
+
+@media (min-width: 40rem) {
+  .rc-form { grid-template-columns: 1fr 1fr; }
+  .rc-field--full { grid-column: 1 / -1; }
+}
+
+.rc-field { display: flex; flex-direction: column; gap: var(--rc-space-2); }
+
+.rc-label {
+  font-size: var(--rc-size-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--rc-track-label);
+  text-transform: uppercase;
+  color: var(--rc-on-surface);
+}
+.rc-label__req { color: var(--rc-amber-ink); }
+.rc-surface-green .rc-label__req,
+.rc-surface-ink .rc-label__req { color: var(--rc-amber); }
+
+.rc-input,
+.rc-textarea,
+.rc-select {
+  inline-size: 100%;
+  padding: 0.85rem 1rem;
+  background-color: transparent;
+  border: var(--rc-border) solid var(--rc-on-surface-line);
+  border-radius: var(--rc-radius-input);
+  color: var(--rc-on-surface);
+  font-size: var(--rc-size-body);
+  transition: border-color var(--rc-dur-micro) var(--rc-ease-out);
+}
+.rc-input::placeholder,
+.rc-textarea::placeholder { color: var(--rc-on-surface-muted); opacity: 1; }
+
+.rc-input:hover,
+.rc-textarea:hover,
+.rc-select:hover { border-color: var(--rc-on-surface); }
+
+.rc-textarea { min-block-size: 8rem; resize: vertical; }
+
+/* Honeypot. Hidden from people but reachable by bots. Deliberately not
+   display:none, which many bots detect and skip. */
+.rc-hp {
+  position: absolute !important;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.rc-notice {
+  padding: var(--rc-space-5);
+  border-inline-start: 3px solid var(--rc-amber);
+  background-color: rgba(201, 154, 61, 0.08);
+  font-size: var(--rc-size-small);
+}
+.rc-notice--error {
+  border-inline-start-color: #9B2C2C;
+  background-color: rgba(155, 44, 44, 0.07);
+}
+.rc-notice__list { margin: var(--rc-space-2) 0 0; padding-inline-start: 1.1rem; }

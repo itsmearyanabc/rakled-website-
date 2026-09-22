@@ -1,0 +1,131 @@
+/* ==========================================================================
+   TYPOGRAPHY
+   Display serif is reserved for >=40px. H3 downward is sans, by rule.
+   ========================================================================== */
+
+/* Self-hosted WOFF2. If the files are absent the fallback stack in
+   --rc-font-display / --rc-font-sans renders correctly on its own. */
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../fonts/instrument-serif-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../fonts/instrument-serif-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("../fonts/instrument-sans-variable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Display -------------------------------------------------------------- */
+
+.rc-display-1,
+.rc-display-2,
+.rc-display-3 {
+  font-family: var(--rc-font-display);
+  font-weight: 400;
+  letter-spacing: var(--rc-track-display);
+  text-wrap: balance;
+}
+
+.rc-display-1 { font-size: var(--rc-size-h1); line-height: var(--rc-lh-display); }
+.rc-display-2 { font-size: var(--rc-size-h2); line-height: 1.06; }
+.rc-display-3 { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3rem); line-height: 1.1; }
+
+/* The single oversized statement per page — "WASTE BECOMES INPUT.", "1995".
+   Uppercase is correct here and nowhere else in the display range. */
+.rc-mega {
+  font-family: var(--rc-font-display);
+  font-weight: 400;
+  font-size: var(--rc-size-mega);
+  line-height: 0.92;
+  letter-spacing: var(--rc-track-display);
+}
+
+/* --- Headings ------------------------------------------------------------- */
+
+.rc-h3 {
+  font-family: var(--rc-font-sans);
+  font-size: var(--rc-size-h3);
+  font-weight: 600;
+  line-height: var(--rc-lh-heading);
+  letter-spacing: var(--rc-track-tight);
+}
+
+.rc-h4 {
+  font-family: var(--rc-font-sans);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: var(--rc-lh-snug);
+}
+
+/* --- Body ----------------------------------------------------------------- */
+
+.rc-lede {
+  font-size: var(--rc-size-lede);
+  line-height: 1.6;
+  max-width: var(--rc-measure-lede);
+  color: var(--rc-on-surface-muted, var(--rc-ink-muted));
+}
+
+.rc-body {
+  font-size: var(--rc-size-body);
+  line-height: var(--rc-lh-body);
+  max-width: var(--rc-measure-body);
+  color: var(--rc-on-surface-muted, var(--rc-ink-muted));
+}
+
+.rc-body + .rc-body { margin-top: var(--rc-space-5); }
+
+.rc-small {
+  font-size: var(--rc-size-small);
+  line-height: 1.6;
+  color: var(--rc-on-surface-muted, var(--rc-ink-muted));
+}
+
+/* --- Eyebrow / labels ------------------------------------------------------
+   Amber is deliberately NOT used here on light surfaces (2.39:1).
+   The amber signal is carried by the adjacent rule, not the text.        */
+
+.rc-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--rc-space-3);
+  font-size: var(--rc-size-eyebrow);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--rc-track-eyebrow);
+  text-transform: uppercase;
+  color: var(--rc-on-surface, var(--rc-ink));
+}
+
+.rc-eyebrow::before {
+  content: "";
+  inline-size: var(--rc-space-6);
+  block-size: 1px;
+  flex: none;
+  background: var(--rc-amber);
+}
+
+.rc-eyebrow--plain::before { display: none; }
+
+/* Numeric index used by process steps and timeline nodes. */
+.rc-index {
+  font-family: var(--rc-font-sans);
+  font-size: var(--rc-size-small);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--rc-track-label);
+  color: var(--rc-amber);
+}

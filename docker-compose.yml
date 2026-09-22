@@ -1,0 +1,69 @@
+# Local development environment for the Rian Cullet website.
+#
+# The credentials below are throwaway values for a disposable local container.
+# They are NOT production secrets and must never be reused on a live host.
+#
+#   docker compose up -d      start the stack   -> http://localhost:8080
+#   docker compose down       stop the stack (data is preserved in volumes)
+#   docker compose down -v    stop and destroy the database
+
+services:
+  db:
+    image: mariadb:11
+    container_name: rian_db
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+      MARIADB_ROOT_PASSWORD: rootpass
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  wordpress:
+    image: wordpress:6-php8.3-apache
+    container_name: rian_wp
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'WP_DEBUG_LOG', true );
+        define( 'WP_DEBUG_DISPLAY', false );
+        define( 'DISALLOW_FILE_EDIT', true );
+    volumes:
+      - wp_core:/var/www/html
+      - ./wp-content/themes/rian-cullet:/var/www/html/wp-content/themes/rian-cullet
+
+  cli:
+    image: wordpress:cli-php8.3
+    container_name: rian_cli
+    depends_on:
+      - wordpress
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp_core:/var/www/html
+      - ./wp-content/themes/rian-cullet:/var/www/html/wp-content/themes/rian-cullet
+    entrypoint: ["tail", "-f", "/dev/null"]
+
+volumes:
+  db_data:
+  wp_core:

@@ -1,0 +1,22 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "rian-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["tools/preview-server.js"],
+      "port": 4321
+    },
+    {
+      "name": "rian-wordpress",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y", "@wp-playground/cli@3.1.40", "server",
+        "--mount-dir", "wp-content/themes/rian-cullet", "/wordpress/wp-content/themes/rian-cullet",
+        "--blueprint", "tools/playground/blueprint.json",
+        "--port", "9400"
+      ],
+      "port": 9400
+    }
+  ]
+}

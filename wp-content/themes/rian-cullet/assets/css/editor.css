@@ -1,0 +1,4 @@
+/* Editor-only overrides. The shared tokens are enqueued separately
+   by rc_enqueue_editor_assets(). */
+
+.editor-styles-wrapper { background-color: var(--rc-paper); }

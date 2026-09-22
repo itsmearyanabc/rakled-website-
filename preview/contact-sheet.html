@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>Shortlist</title>
+<style>
+ body{background:#111;color:#eee;font:14px/1.4 system-ui;margin:0;padding:12px}
+ .g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+ figure{margin:0}
+ img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#333}
+ figcaption{font-size:13px;padding:3px 0;color:#7f7}
+ h2{font-size:15px;margin:18px 0 8px;color:#fc0}
+</style></head><body>
+<h2>A — recycling / cullet piles</h2><div class="g" id="a"></div>
+<h2>E — brown / amber shards</h2><div class="g" id="e"></div>
+<h2>F — "glass cullet" search</h2><div class="g" id="f"></div>
+<script>
+const sets={
+a:["1508061501437-e1b984a4d665","1706468808971-ee72122572b6","1569075857556-6e707cccc11f","1557084629-2c570725be8b","1596266954671-87323183f5b6","1596266953826-3b2b897dee22","1658476207387-f203161f6386","1596266953813-b20916e58623","1742821886941-e636cae9dd80","1705586273709-4d1c3a89f059","1750786103734-780fceb277fc","1563174530-b45df9598860"],
+e:["1669563794789-2412eeb7e62d","1633299258059-66b1111f4ea3","1687876608562-d8f5890b31b0","1727124442524-9fdb492fd819","1661880991383-46f2ec9b9f52","1732458946304-5ea6b8f3ff4b","1638277951587-5d02f3755b63","1539447204258-4d16f7c5185e","1607638429582-289379a0ba64","1709377195497-b2723c8970a9","1610917423396-689c35842cd1","1742279157096-b7739f394cf4"],
+f:["1643114451805-f14ea7bb0dfb","1625591339971-4c9a87a66871","1549127024-5f213d45604a","1719415948896-9011f319c11f","1670057521638-3a2849f5ba1f","1709093863386-e111ef1f649e","1610821165787-689ee0d0cff0","1709985237740-f3db17d1528c","1708963058462-420dfc39f692","1708963058384-00158975cf2b","1708963058323-56d8c48ca1a4","1727041423917-d957a13ee961"]
+};
+for(const [k,ids] of Object.entries(sets)){
+  document.getElementById(k).innerHTML = ids.map((id,i)=>
+    `<figure><img loading="eager" src="https://images.unsplash.com/photo-${id}?w=640&h=480&fit=crop&q=75"><figcaption>${k}${i+1}</figcaption></figure>`
+  ).join('');
+}
+</script></body></html>
