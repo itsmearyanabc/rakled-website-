@@ -713,7 +713,9 @@ html:not(.rc-js) .rc-tagline:not(.is-active) { display: none; }
    10 SUSTAINABILITY FLOW
    ========================================================================== */
 
-.rc-flow {
+/* Element-qualified because the reset's ol[class] { margin: 0 } outranks
+   a lone class, which silently removed the gap under the heading. */
+ol.rc-flow {
   display: grid;
   gap: 0;
   margin-block-start: var(--rc-space-8);
@@ -745,12 +747,29 @@ html:not(.rc-js) .rc-tagline:not(.is-active) { display: none; }
 .rc-surface-green .rc-flow__node::before,
 .rc-surface-ink .rc-flow__node::before { color: var(--rc-amber); }
 
-.rc-flow__label { font-weight: 600; }
-.rc-flow__note { font-size: var(--rc-size-small); color: var(--rc-on-surface-muted); }
+/* Flow nodes also carry .rc-step so process.js can dim and activate
+   them in sequence. That class's 7px square marker shares this
+   ::before, so undo it here: the marker in a flow is the number. */
+.rc-flow__node::before {
+  inline-size: auto;
+  block-size: auto;
+  background: none;
+  transform: none;
+}
+.rc-flow__node.is-active::before { background: none; }
+
+.rc-flow__label { display: block; font-weight: 600; }
+.rc-flow__note {
+  display: block;
+  margin-block-start: var(--rc-space-2);
+  font-size: var(--rc-size-small);
+  color: var(--rc-on-surface-muted);
+}
 
 @media (min-width: 62rem) {
   .rc-flow { grid-template-columns: repeat(6, 1fr); }
-  .rc-flow__node {
+  .rc-flow__node,
+  .rc-flow__node:last-child {
     padding-block: var(--rc-space-6) var(--rc-space-8);
     padding-inline: var(--rc-space-4);
     border-block-end: 0;
@@ -810,6 +829,7 @@ html:not(.rc-js) .rc-tagline:not(.is-active) { display: none; }
   line-height: 1.8;
   color: var(--rc-paper-muted);
 }
+.rc-footer__address span { display: block; }
 .rc-footer__contact {
   display: block;
   margin-block-start: var(--rc-space-4);
