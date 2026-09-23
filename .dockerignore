@@ -1,0 +1,9 @@
+# The Render image needs only the theme and deploy/render/.
+.git
+.claude
+node_modules
+docs
+preview
+tools
+*.zip
+*.log

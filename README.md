@@ -30,6 +30,14 @@ That is the whole setup. The pages need no content: every page is a
 template in this theme, so it looks exactly like the design preview
 from the moment it is activated.
 
+## Staging on Render
+
+A free, shareable staging copy that redeploys on every push to `main`:
+see [`deploy/render/README.md`](deploy/render/README.md). It is hidden
+from search engines and resets whenever it restarts.
+
+---
+
 ## Running it locally
 
 ### Without Docker (quickest)
@@ -99,6 +107,8 @@ wp-content/themes/rian-cullet/
     ├── fonts/             self-hosted WOFF2 (see below)
     └── img/               photography, logo mark, favicons
 
+deploy/render/             Render staging image (WordPress + SQLite)
+render.yaml                Render Blueprint for the above
 docs/brand/                source logo artwork (not deployed)
 tools/playground/          blueprint for the no-Docker local WordPress
 tools/preview/             component library mirrored by preview/home.html
