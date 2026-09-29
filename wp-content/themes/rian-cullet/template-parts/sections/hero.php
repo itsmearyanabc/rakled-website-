@@ -49,7 +49,7 @@ $rc_slides = rc_hero_slides();
 		<div class="rc-hero__content">
 
 			<div class="rc-reveal" style="--rc-i:0">
-				<?php rc_eyebrow( __( 'Glass Cullet / Pan-India Supply', 'rian-cullet' ) ); ?>
+				<?php rc_eyebrow( __( 'Glass Cullet / Serving Pan-India', 'rian-cullet' ) ); ?>
 			</div>
 
 			<h1 class="rc-display-1 rc-hero__title">

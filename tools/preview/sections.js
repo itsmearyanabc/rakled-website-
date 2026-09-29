@@ -34,7 +34,7 @@ ${media}
   </div>
   <div class="rc-hero__inner rc-container rc-container--wide">
     <div class="rc-hero__content">
-      <div class="rc-reveal" style="--rc-i:0">${eyebrow('Glass Cullet / Pan-India Supply')}</div>
+      <div class="rc-reveal" style="--rc-i:0">${eyebrow('Glass Cullet / Serving Pan-India')}</div>
       <h1 class="rc-display-1 rc-hero__title">
 ${taglines}
       </h1>
@@ -278,10 +278,10 @@ function founder(showLink = true) {
 
 function heritage() {
   const points = [
-    [`${FACTS.founded}`, 'Company established in Delhi.'],
-    [`${FACTS.combined}+`, 'Years of combined experience in collection, sorting and processing.'],
+    ['Generations', 'Experience in glass cullet, carried from one generation to the next.'],
+    [`${FACTS.founded}`, 'Rian Cullet established in Delhi.'],
     [`${FACTS.companies}+`, 'Companies served across the glass manufacturing and recycling ecosystem.'],
-    ['Today', `Pan-India supply, with customers in ${FACTS.states}+ states.`],
+    ['Today', `Serving pan-India, across ${FACTS.states}+ states.`],
   ];
   return `
 <section class="rc-section rc-surface-ink" data-nav="dark" aria-labelledby="rc-heritage-title">
@@ -289,11 +289,11 @@ function heritage() {
     <div class="rc-split rc-split--6-6">
       <div class="rc-reveal">
         ${eyebrow('Heritage')}
-        <span class="rc-mega rc-heritage__year" id="rc-heritage-title" style="margin-top:var(--rc-space-5)">${FACTS.founded}</span>
+        <span class="rc-mega rc-heritage__year" id="rc-heritage-title" style="margin-top:var(--rc-space-5)">${FACTS.combined}+<span class="rc-sr-only"> years of combined experience</span></span>
       </div>
       <div class="rc-reveal" style="--rc-i:1">
-        <p class="rc-lede rc-heritage__lede">The beginning of the Rian Cullet journey.</p>
-        <p class="rc-body" style="margin-top:var(--rc-space-5)">Based in Delhi and operating in glass cullet since ${FACTS.founded}, the company brings ${FACTS.combined}+ years of combined experience to the collection, sorting, processing and recycling of foreign and post-consumer glass cullet.</p>
+        <p class="rc-lede rc-heritage__lede">Years of combined experience, built across generations.</p>
+        <p class="rc-body" style="margin-top:var(--rc-space-5)">Rian Cullet is a generational business. Established in Delhi in ${FACTS.founded}, it brings that experience to the collection, sorting, processing and recycling of foreign and post-consumer glass cullet, serving customers pan-India.</p>
       </div>
     </div>
     <ol class="rc-timeline">

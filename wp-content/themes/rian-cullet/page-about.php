@@ -38,7 +38,7 @@ get_template_part(
 						<?php
 						printf(
 							/* translators: 1: founding year, 2: years of combined experience */
-							esc_html__( 'Rian Cullet, based in Delhi, was established in %1$d and brings %2$d+ years of combined experience in the field of glass cullet.', 'rian-cullet' ),
+							esc_html__( 'Rian Cullet is a generational business based in Delhi. Established in %1$d, it brings %2$d+ years of combined experience in glass cullet, built across generations.', 'rian-cullet' ),
 							(int) RC_FOUNDED,
 							(int) RC_COMBINED_EXPERIENCE
 						);
@@ -51,7 +51,7 @@ get_template_part(
 						<?php
 						printf(
 							/* translators: 1: companies served, 2: states served */
-							esc_html__( 'Over the years, Rian Cullet has served %1$d+ companies across %2$d+ states, building experience and trust within the glass manufacturing and recycling ecosystem. Supply is available pan-India.', 'rian-cullet' ),
+							esc_html__( 'Over the years, Rian Cullet has served %1$d+ companies across %2$d+ states, pan-India, building trust within the glass manufacturing and recycling ecosystem.', 'rian-cullet' ),
 							(int) RC_COMPANIES_SERVED,
 							(int) RC_STATES_SERVED
 						);

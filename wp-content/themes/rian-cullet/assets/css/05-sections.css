@@ -704,10 +704,13 @@ html:not(.rc-js) .rc-tagline:not(.is-active) { display: none; }
 .rc-timeline {
   display: grid;
   gap: var(--rc-space-7);
-  margin-block-start: var(--rc-space-9);
   padding: 0;
   list-style: none;
 }
+
+/* Element-qualified: the reset's ol[class] { margin: 0 } outranks a lone
+   class, which pressed the timeline up against the paragraph above. */
+ol.rc-timeline { margin-block-start: var(--rc-space-9); }
 
 .rc-timeline__item {
   padding-block-start: var(--rc-space-5);
