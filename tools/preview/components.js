@@ -9,7 +9,8 @@
  */
 
 const A = '../wp-content/themes/rian-cullet/assets';
-const YEARS = new Date().getFullYear() - 1995;
+// Mirrors the constants in functions.php.
+const FACTS = { founded: 1996, combined: 65, companies: 35, states: 22 };
 
 const NAV = [
   ['About', 'about.html'],
@@ -152,4 +153,4 @@ ${['nav','reveal','hero','counters','process'].map(f => `<script src="${A}/js/${
 </html>`;
 }
 
-module.exports = { A, YEARS, NAV, figure, btn, link, eyebrow, head, header, footer };
+module.exports = { A, FACTS, NAV, figure, btn, link, eyebrow, head, header, footer };

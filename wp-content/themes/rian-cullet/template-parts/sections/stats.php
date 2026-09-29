@@ -2,8 +2,9 @@
 /**
  * Section 02: Trust and heritage figures.
  *
- * Only the three figures supplied in the brief appear here. The years
- * figure is derived from the founding year rather than hard-coded.
+ * Only figures the client supplied appear here, read from the constants
+ * in functions.php. "Combined experience" is the team's, which is why it
+ * exceeds the company's own age.
  *
  * The final values are printed by PHP, so the correct numbers are in the
  * HTML for search engines, for visitors without JavaScript and for
@@ -16,8 +17,6 @@ declare( strict_types = 1 );
 
 defined( 'ABSPATH' ) || exit;
 
-$rc_years = rc_years_of_experience();
-
 $rc_figures = array(
 	array(
 		'value'  => (string) RC_FOUNDED,
@@ -25,16 +24,22 @@ $rc_figures = array(
 		'label'  => __( 'Established', 'rian-cullet' ),
 	),
 	array(
-		'value'  => $rc_years . '+',
-		'count'  => $rc_years,
+		'value'  => RC_COMBINED_EXPERIENCE . '+',
+		'count'  => RC_COMBINED_EXPERIENCE,
 		'suffix' => '+',
-		'label'  => __( 'Years of experience', 'rian-cullet' ),
+		'label'  => __( 'Years of combined experience', 'rian-cullet' ),
 	),
 	array(
-		'value'  => '35+',
-		'count'  => 35,
+		'value'  => RC_COMPANIES_SERVED . '+',
+		'count'  => RC_COMPANIES_SERVED,
 		'suffix' => '+',
 		'label'  => __( 'Companies served', 'rian-cullet' ),
+	),
+	array(
+		'value'  => RC_STATES_SERVED . '+',
+		'count'  => RC_STATES_SERVED,
+		'suffix' => '+',
+		'label'  => __( 'States served, pan-India', 'rian-cullet' ),
 	),
 );
 ?>

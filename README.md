@@ -1,7 +1,8 @@
 # Rian Cullet — website
 
 Bespoke WordPress theme for Rian Cullet, a Delhi-based glass cullet
-collection, sorting, processing and recycling company established in 1995.
+collection, sorting, processing and recycling company established in 1996,
+supplying pan-India.
 
 No page builder. No CSS framework. No JavaScript libraries.
 
@@ -149,7 +150,8 @@ file, so a gap is always visible rather than silent.
 | `hero-slide-1` … `hero-slide-4` | 16:9, 2400×1350 | yes |
 | `intro-cullet-macro` | 4:5, 1200×1500 | yes |
 | `factory-cullet` | 4:5, 1200×1500 | yes |
-| `external-cullet` | 4:5, 1200×1500 | yes |
+| `foreign-cullet` | 4:5, 1200×1500 | yes |
+| `flint-cullet` | 4:5, 1200×1500 | yes |
 | `clear-glass` | 3:4, 1200×1600 | yes |
 | `amber-glass` | 3:4, 1200×1600 | yes |
 | `green-glass` | 3:4, 1200×1600 | yes |
@@ -159,8 +161,13 @@ file, so a gap is always visible rather than silent.
 | `logo-square-512` | 1:1, 512×512 | yes (structured-data logo) |
 | `favicon-32`, `favicon-192`, `apple-touch-icon` | 1:1 | yes |
 
-The current photographs are licensed stock from Unsplash, used as an
-interim. They are not Rian Cullet's own facility. See
+The current photographs are licensed stock, used as an interim. They are
+not Rian Cullet's own facility. Most are from Unsplash; `factory-cullet`
+(Pexels 36423790, a glass plant's cullet yard in Dar es Salaam) and
+`flint-cullet` (Pexels 4592996) are from Pexels. Both licences allow
+commercial use without credit. No stock library had cullet with a factory
+building behind it, so `factory-cullet` is the closest match: the real
+shot is on the shot list. See
 `docs/photography-shot-list.md` for what to shoot to replace them.
 
 **There is no founder portrait, by decision.** The founder section is
@@ -276,13 +283,13 @@ spam. Change the recipient with the `rc_enquiry_recipient` filter.
   **Appearance → Customize → Rian Cullet: contact details**. Until then
   they are omitted from the site *and* from the structured data rather
   than faked.
-- **Company name and years: the logo disagrees with the site.** The
-  supplied lockup reads "RIAN CULLETS" and "40+ years". The site says
-  "Rian Cullet" and derives its years from the 1995 founding date
-  (31+ today). One of them needs correcting; the site has not been
-  changed until the client confirms which is right. The name shown in
-  the header and footer is the WordPress Site Title, so a name change
-  needs no code.
+- **Company name: the logo lockup says "RIAN CULLETS", the site says
+  "Rian Cullet".** The client has confirmed the figures (established
+  1996, 65+ years of combined experience, 35+ companies, 22+ states,
+  pan-India); those live as constants at the top of `functions.php`. The
+  lockup's own "40+ years" line still differs, but the lockup is not
+  shown on the site. The name in the header and footer is the WordPress
+  Site Title, so settling the name needs no code.
 - **Privacy policy** — no content. The page is `noindex` while empty.
   WordPress creates it as a draft; **Create pages and menus** publishes
   that draft (empty) so the footer link resolves, unless it has been

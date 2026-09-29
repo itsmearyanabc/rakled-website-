@@ -88,8 +88,9 @@ function rc_enquiry_fields(): array {
 			'options'  => array(
 				''         => __( 'Select an option', 'rian-cullet' ),
 				'factory'  => __( 'Factory cullet', 'rian-cullet' ),
-				'external' => __( 'External / post-consumer cullet', 'rian-cullet' ),
-				'both'     => __( 'Both', 'rian-cullet' ),
+				'foreign'  => __( 'Foreign / post-consumer cullet', 'rian-cullet' ),
+				'flint'    => __( 'Flint (white) cullet', 'rian-cullet' ),
+				'multiple' => __( 'More than one', 'rian-cullet' ),
 				'other'    => __( 'Other / not sure yet', 'rian-cullet' ),
 			),
 		),

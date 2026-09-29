@@ -30,7 +30,10 @@ defined( 'ABSPATH' ) || exit;
 			<?php rc_eyebrow( __( 'Our story', 'rian-cullet' ) ); ?>
 
 			<h2 class="rc-display-2 rc-founder__statement" id="rc-founder-title">
-				<?php esc_html_e( 'A vision that began in 1995.', 'rian-cullet' ); ?>
+				<?php
+				/* translators: %d: founding year */
+				printf( esc_html__( 'A vision that began in %d.', 'rian-cullet' ), (int) RC_FOUNDED );
+				?>
 			</h2>
 		</div>
 

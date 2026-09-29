@@ -89,7 +89,7 @@ get_template_part(
 			<div class="rc-reveal" style="--rc-i:1">
 				<span class="rc-index">02</span>
 				<h3 class="rc-h3 rc-why__title"><?php esc_html_e( 'Flat glass', 'rian-cullet' ); ?></h3>
-				<p class="rc-body"><?php esc_html_e( 'Glass produced in sheet form. It arrives as factory cullet generated during flat glass manufacturing, and as external cullet collected after use.', 'rian-cullet' ); ?></p>
+				<p class="rc-body"><?php esc_html_e( 'Glass produced in sheet form. It arrives as factory cullet generated during flat glass manufacturing, and as foreign cullet collected after use.', 'rian-cullet' ); ?></p>
 			</div>
 		</div>
 

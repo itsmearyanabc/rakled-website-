@@ -429,11 +429,22 @@ html:not(.rc-js) .rc-tagline:not(.is-active) { display: none; }
 
 .rc-stats { display: grid; gap: var(--rc-space-7); }
 
+/* Four figures: two by two on tablets, one row from desktop. A hairline
+   separates columns but never opens a row. */
 @media (min-width: 48rem) {
-  .rc-stats { grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .rc-stats { grid-template-columns: repeat(2, 1fr); gap: var(--rc-space-7) 0; }
   .rc-stat { padding-inline-end: clamp(var(--rc-space-5), 4vw, var(--rc-space-8)); }
-  .rc-stat + .rc-stat {
+  .rc-stat:nth-child(even) {
     padding-inline-start: clamp(var(--rc-space-5), 4vw, var(--rc-space-8));
+    border-inline-start: var(--rc-border) solid var(--rc-on-surface-line);
+  }
+}
+
+@media (min-width: 62rem) {
+  .rc-stats { grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .rc-stat { padding-inline-end: clamp(var(--rc-space-5), 2.5vw, var(--rc-space-7)); }
+  .rc-stat + .rc-stat {
+    padding-inline-start: clamp(var(--rc-space-5), 2.5vw, var(--rc-space-7));
     border-inline-start: var(--rc-border) solid var(--rc-on-surface-line);
   }
 }

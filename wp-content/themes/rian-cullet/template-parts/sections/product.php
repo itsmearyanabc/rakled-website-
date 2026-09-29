@@ -16,17 +16,26 @@ $rc_products = array(
 		'lead'  => __( 'Glass generated during manufacturing.', 'rian-cullet' ),
 		'body'  => __( 'Factory cullet is produced inside flat glass or container glass plants. It is the glass waste that arises during the manufacturing process itself, in either the flat glass or the container glass industry.', 'rian-cullet' ),
 		'image' => 'factory-cullet',
-		'alt'   => __( 'Factory cullet collected within a glass manufacturing plant.', 'rian-cullet' ),
-		'note'  => __( 'Product: factory cullet, 4:5 portrait. 1200x1500.', 'rian-cullet' ),
+		'alt'   => __( 'Large piles of glass cullet in the yard of a glass manufacturing plant.', 'rian-cullet' ),
+		'note'  => __( 'Product: factory cullet with the plant behind it, 4:5 portrait. 1200x1500.', 'rian-cullet' ),
 	),
 	array(
 		'index' => '02',
-		'name'  => __( 'External Cullet', 'rian-cullet' ),
+		'name'  => __( 'Foreign Cullet', 'rian-cullet' ),
 		'lead'  => __( 'Post-consumer glass, recovered for reuse.', 'rian-cullet' ),
-		'body'  => __( 'External cullet, also known as post-consumer or foreign cullet, is waste glass collected after consumption. It may be container glass or flat glass, gathered from municipal waste streams and other relevant sources.', 'rian-cullet' ),
-		'image' => 'external-cullet',
-		'alt'   => __( 'Post-consumer external cullet sorted for processing.', 'rian-cullet' ),
-		'note'  => __( 'Product: external post-consumer cullet, 4:5 portrait. 1200x1500.', 'rian-cullet' ),
+		'body'  => __( 'Foreign cullet, also known as external or post-consumer cullet, is waste glass collected after consumption. It may be container glass or flat glass, gathered from municipal waste streams and other relevant sources.', 'rian-cullet' ),
+		'image' => 'foreign-cullet',
+		'alt'   => __( 'Post-consumer foreign cullet sorted for processing.', 'rian-cullet' ),
+		'note'  => __( 'Product: foreign post-consumer cullet, 4:5 portrait. 1200x1500.', 'rian-cullet' ),
+	),
+	array(
+		'index' => '03',
+		'name'  => __( 'Flint (White) Cullet', 'rian-cullet' ),
+		'lead'  => __( 'Clear, colourless glass, kept apart from colour.', 'rian-cullet' ),
+		'body'  => __( 'Flint is the glass trade’s name for clear, colourless glass. Flint cullet is sorted and processed separately from amber and green glass, which keeps it suitable for the production of clear glass.', 'rian-cullet' ),
+		'image' => 'flint-cullet',
+		'alt'   => __( 'Clear flint glass cullet, crushed and sorted.', 'rian-cullet' ),
+		'note'  => __( 'Product: flint (white) cullet, 4:5 portrait. 1200x1500.', 'rian-cullet' ),
 	),
 );
 ?>
@@ -39,7 +48,7 @@ $rc_products = array(
 			<p class="rc-lede"><?php esc_html_e( 'Processed glass. Ready for its next cycle.', 'rian-cullet' ); ?></p>
 		</div>
 
-		<div class="rc-products rc-cols rc-cols--2">
+		<div class="rc-products rc-cols rc-cols--3">
 			<?php foreach ( $rc_products as $rc_i => $rc_product ) : ?>
 				<a class="rc-card rc-reveal" href="<?php echo esc_url( home_url( '/glass-cullet/' ) ); ?>" style="--rc-i:<?php echo (int) $rc_i; ?>">
 					<div class="rc-card__body">

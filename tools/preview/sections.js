@@ -1,7 +1,7 @@
 /**
  * Section components. One export per template-parts/sections/*.php file.
  */
-const { figure, btn, link, eyebrow, YEARS } = require('./components');
+const { figure, btn, link, eyebrow, FACTS } = require('./components');
 
 /* --- 01 hero (rotating) --------------------------------------------------- */
 
@@ -34,7 +34,7 @@ ${media}
   </div>
   <div class="rc-hero__inner rc-container rc-container--wide">
     <div class="rc-hero__content">
-      <div class="rc-reveal" style="--rc-i:0">${eyebrow('Glass Cullet / Delhi, India')}</div>
+      <div class="rc-reveal" style="--rc-i:0">${eyebrow('Glass Cullet / Pan-India Supply')}</div>
       <h1 class="rc-display-1 rc-hero__title">
 ${taglines}
       </h1>
@@ -77,9 +77,10 @@ function pageHero(eb, title, lede) {
 
 function stats() {
   const rows = [
-    ['1995', null, '', 'Established'],
-    [`${YEARS}+`, YEARS, '+', 'Years of experience'],
-    ['35+', 35, '+', 'Companies served'],
+    [`${FACTS.founded}`, null, '', 'Established'],
+    [`${FACTS.combined}+`, FACTS.combined, '+', 'Years of combined experience'],
+    [`${FACTS.companies}+`, FACTS.companies, '+', 'Companies served'],
+    [`${FACTS.states}+`, FACTS.states, '+', 'States served, pan-India'],
   ];
   return `
 <section class="rc-section rc-section--tight rc-surface-paper" aria-label="Company at a glance">
@@ -159,10 +160,13 @@ ${STAGES.map(([t, b], i) => `          <li class="rc-step rc-reveal">
 const PRODUCTS = [
   ['01', 'Factory Cullet', 'Glass generated during manufacturing.',
    'Factory cullet is produced inside flat glass or container glass plants. It is the glass waste that arises during the manufacturing process itself, in either the flat glass or the container glass industry.',
-   'factory-cullet', 'Factory cullet collected within a glass manufacturing plant.'],
-  ['02', 'External Cullet', 'Post-consumer glass, recovered for reuse.',
-   'External cullet, also known as post-consumer or foreign cullet, is waste glass collected after consumption. It may be container glass or flat glass, gathered from municipal waste streams and other relevant sources.',
-   'external-cullet', 'Post-consumer external cullet sorted for processing.'],
+   'factory-cullet', 'Large piles of glass cullet in the yard of a glass manufacturing plant.'],
+  ['02', 'Foreign Cullet', 'Post-consumer glass, recovered for reuse.',
+   'Foreign cullet, also known as external or post-consumer cullet, is waste glass collected after consumption. It may be container glass or flat glass, gathered from municipal waste streams and other relevant sources.',
+   'foreign-cullet', 'Post-consumer foreign cullet sorted for processing.'],
+  ['03', 'Flint (White) Cullet', 'Clear, colourless glass, kept apart from colour.',
+   'Flint is the glass trade’s name for clear, colourless glass. Flint cullet is sorted and processed separately from amber and green glass, which keeps it suitable for the production of clear glass.',
+   'flint-cullet', 'Clear flint glass cullet, crushed and sorted.'],
 ];
 
 function product() {
@@ -174,7 +178,7 @@ function product() {
       <h2 class="rc-display-2" id="rc-product-title">Our glass cullet</h2>
       <p class="rc-lede">Processed glass. Ready for its next cycle.</p>
     </div>
-    <div class="rc-products rc-cols rc-cols--2">
+    <div class="rc-products rc-cols rc-cols--3">
 ${PRODUCTS.map(([idx, name, lead, body, img, alt], i) => `      <a class="rc-card rc-reveal" href="glass-cullet.html" style="--rc-i:${i}">
         <div class="rc-card__body">
           <div class="rc-product__meta"><h3 class="rc-h3">${name}</h3><span class="rc-index">${idx}</span></div>
@@ -254,7 +258,7 @@ function founder(showLink = true) {
   <div class="rc-container rc-container--text rc-founder__inner">
     <div class="rc-reveal">
       ${eyebrow('Our story')}
-      <h2 class="rc-display-2 rc-founder__statement" id="rc-founder-title">A vision that began in 1995.</h2>
+      <h2 class="rc-display-2 rc-founder__statement" id="rc-founder-title">A vision that began in ${FACTS.founded}.</h2>
     </div>
     <div class="rc-founder__body rc-stack rc-reveal" style="--rc-i:1">
       <p class="rc-body">The journey of Rian Cullet is driven by the vision and leadership of its founder, Ms. Indu Bhatia. With a strong focus on sustainability and responsible waste management, she established the foundation for a business dedicated to transforming waste glass into a valuable and reusable resource.</p>
@@ -274,10 +278,10 @@ function founder(showLink = true) {
 
 function heritage() {
   const points = [
-    ['1995', 'Company established in Delhi.'],
-    ['Since', 'Growth and experience in collection, sorting and processing.'],
-    ['35+', 'Companies served across the glass manufacturing and recycling ecosystem.'],
-    ['Today', `${YEARS} years of supplying processed glass cullet.`],
+    [`${FACTS.founded}`, 'Company established in Delhi.'],
+    [`${FACTS.combined}+`, 'Years of combined experience in collection, sorting and processing.'],
+    [`${FACTS.companies}+`, 'Companies served across the glass manufacturing and recycling ecosystem.'],
+    ['Today', `Pan-India supply, with customers in ${FACTS.states}+ states.`],
   ];
   return `
 <section class="rc-section rc-surface-ink" data-nav="dark" aria-labelledby="rc-heritage-title">
@@ -285,11 +289,11 @@ function heritage() {
     <div class="rc-split rc-split--6-6">
       <div class="rc-reveal">
         ${eyebrow('Heritage')}
-        <span class="rc-mega rc-heritage__year" id="rc-heritage-title" style="margin-top:var(--rc-space-5)">1995</span>
+        <span class="rc-mega rc-heritage__year" id="rc-heritage-title" style="margin-top:var(--rc-space-5)">${FACTS.founded}</span>
       </div>
       <div class="rc-reveal" style="--rc-i:1">
         <p class="rc-lede rc-heritage__lede">The beginning of the Rian Cullet journey.</p>
-        <p class="rc-body" style="margin-top:var(--rc-space-5)">Based in Delhi and operating in glass cullet for over ${YEARS} years, the company has built its experience in the collection, sorting, processing and recycling of foreign and post-consumer glass cullet.</p>
+        <p class="rc-body" style="margin-top:var(--rc-space-5)">Based in Delhi and operating in glass cullet since ${FACTS.founded}, the company brings ${FACTS.combined}+ years of combined experience to the collection, sorting, processing and recycling of foreign and post-consumer glass cullet.</p>
       </div>
     </div>
     <ol class="rc-timeline">
@@ -381,8 +385,9 @@ ${FIELDS.map(([label, type, req]) => `            <div class="rc-field"><label c
               <select class="rc-select" id="f-req" name="requirement">
                 <option value="">Select an option</option>
                 <option value="factory">Factory cullet</option>
-                <option value="external">External / post-consumer cullet</option>
-                <option value="both">Both</option>
+                <option value="foreign">Foreign / post-consumer cullet</option>
+                <option value="flint">Flint (white) cullet</option>
+                <option value="multiple">More than one</option>
                 <option value="other">Other / not sure yet</option>
               </select>
             </div>

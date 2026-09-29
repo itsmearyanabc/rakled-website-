@@ -31,12 +31,14 @@ function rc_seo_plugin_active(): bool {
  */
 function rc_meta_descriptions(): array {
 	return array(
-		'_front'         => __( 'Rian Cullet is a Delhi-based glass cullet company established in 1995, specialising in the collection, sorting, processing and supply of recycled glass cullet.', 'rian-cullet' ),
-		'about'          => __( 'Established in Delhi in 1995 and founded by Ms. Indu Bhatia, Rian Cullet collects, sorts and processes glass cullet for reuse in glass manufacturing.', 'rian-cullet' ),
-		'glass-cullet'   => __( 'What glass cullet is, how factory cullet differs from external post-consumer cullet, and how container and flat glass are sorted by colour for reuse.', 'rian-cullet' ),
+		/* translators: %d: founding year */
+		'_front'         => sprintf( __( 'Rian Cullet is a Delhi-based glass cullet company established in %d, collecting, sorting, processing and supplying recycled glass cullet pan-India.', 'rian-cullet' ), RC_FOUNDED ),
+		/* translators: %d: founding year */
+		'about'          => sprintf( __( 'Established in Delhi in %d and founded by Ms. Indu Bhatia, Rian Cullet collects, sorts and processes glass cullet for reuse in glass manufacturing.', 'rian-cullet' ), RC_FOUNDED ),
+		'glass-cullet'   => __( 'What glass cullet is: factory cullet, foreign post-consumer cullet and flint (white) cullet, and how container and flat glass are sorted by colour for reuse.', 'rian-cullet' ),
 		'process'        => __( 'How Rian Cullet turns recovered glass into usable cullet: collection, sorting by type and colour, processing, and supply to glass manufacturers.', 'rian-cullet' ),
 		'sustainability' => __( 'Recovered glass returned to the manufacturing cycle. How recycled cullet supports lower melting requirements and a more circular glass industry.', 'rian-cullet' ),
-		'contact'        => __( 'Contact Rian Cullet in Delhi to discuss glass cullet requirements. Send an enquiry about factory cullet or external post-consumer cullet supply.', 'rian-cullet' ),
+		'contact'        => __( 'Contact Rian Cullet in Delhi to discuss glass cullet requirements. Enquire about factory, foreign or flint cullet, supplied pan-India.', 'rian-cullet' ),
 	);
 }
 

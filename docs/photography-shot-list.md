@@ -48,8 +48,9 @@ makes these work.
 |---|---|---|
 | `hero-glass-cullet` | Mixed sorted cullet, green and amber and clear together. The most jewel-like pile on site. | 16:9 landscape, shot wide enough to crop |
 | `intro-cullet-macro` | Very tight macro of a single handful. Edges, facets, transmitted light. | 4:5 portrait |
-| `factory-cullet` | Cullet in an industrial context: hopper, bay, container, conveyor. Should read *plant*. | 4:5 portrait |
-| `external-cullet` | Post-consumer material as received, before sorting. Mixed, honest, not staged. | 4:5 portrait |
+| `factory-cullet` | Cullet piles with the factory building visible behind them. Should read *plant* at a glance. | 4:5 portrait |
+| `foreign-cullet` | Foreign (post-consumer) material as received, before sorting. Mixed, honest, not staged. | 4:5 portrait |
+| `flint-cullet` | Sorted flint (white / clear) cullet, close enough to see it is colourless. | 4:5 portrait |
 | `clear-glass` | Clear and white cullet only. Bright, high-key, lots of light through it. | 3:4 portrait |
 | `amber-glass` | Amber cullet only. Warm, rich, backlit if possible. | 3:4 portrait |
 | `green-glass` | Green cullet only. Deep and saturated, not yellow-green. | 3:4 portrait |

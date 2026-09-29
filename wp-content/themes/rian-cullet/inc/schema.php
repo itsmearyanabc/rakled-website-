@@ -3,11 +3,11 @@
  * Structured data.
  *
  * Everything emitted here is drawn from facts the client supplied:
- * the legal name, the founding year, the registered address and the
- * founder. There is deliberately NO aggregateRating, no review count,
- * no employee count, no turnover, no certification, no service area
- * beyond the stated address, and no opening hours, because none of
- * those were provided.
+ * the legal name, the founding year, the registered address, the
+ * founder and a pan-India service area. There is deliberately NO
+ * aggregateRating, no review count, no employee count, no turnover,
+ * no certification and no opening hours, because none of those were
+ * provided.
  *
  * Telephone and email are emitted only once they are configured. False
  * structured data is worse than absent structured data: it is a
@@ -87,6 +87,7 @@ function rc_schema_organization(): array {
 			'name'  => 'Indu Bhatia',
 		),
 		'address'      => rc_schema_address(),
+		'areaServed'   => rc_schema_area_served(),
 		'description'  => rc_meta_descriptions()['_front'],
 	);
 
@@ -118,10 +119,23 @@ function rc_schema_local_business(): array {
 		'name'        => get_bloginfo( 'name' ),
 		'url'         => home_url( '/' ),
 		'address'     => rc_schema_address(),
+		'areaServed'  => rc_schema_area_served(),
 		'parentOrganization' => array( '@id' => home_url( '/#organization' ) ),
 	);
 
 	return rc_schema_add_channels( $node );
+}
+
+/**
+ * The area served: all of India, as the client states.
+ *
+ * @return array<string, string>
+ */
+function rc_schema_area_served(): array {
+	return array(
+		'@type' => 'Country',
+		'name'  => 'India',
+	);
 }
 
 /**

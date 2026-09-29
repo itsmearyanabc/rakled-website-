@@ -3,8 +3,8 @@
  * Section 09: Heritage.
  *
  * The timeline deliberately carries no invented dates or milestones.
- * It marks only what the brief states: the founding year, accumulated
- * experience, companies served, and the present day.
+ * It marks only what the client states: the founding year, combined
+ * experience, companies served, and today's pan-India reach.
  *
  * @package RianCullet
  */
@@ -13,27 +13,25 @@ declare( strict_types = 1 );
 
 defined( 'ABSPATH' ) || exit;
 
-$rc_years = rc_years_of_experience();
-
 $rc_timeline = array(
 	array(
 		'marker' => (string) RC_FOUNDED,
 		'label'  => __( 'Company established in Delhi.', 'rian-cullet' ),
 	),
 	array(
-		'marker' => __( 'Since', 'rian-cullet' ),
-		'label'  => __( 'Growth and experience in collection, sorting and processing.', 'rian-cullet' ),
+		'marker' => RC_COMBINED_EXPERIENCE . '+',
+		'label'  => __( 'Years of combined experience in collection, sorting and processing.', 'rian-cullet' ),
 	),
 	array(
-		'marker' => '35+',
+		'marker' => RC_COMPANIES_SERVED . '+',
 		'label'  => __( 'Companies served across the glass manufacturing and recycling ecosystem.', 'rian-cullet' ),
 	),
 	array(
 		'marker' => __( 'Today', 'rian-cullet' ),
 		'label'  => sprintf(
-			/* translators: %d: number of years */
-			__( '%d years of supplying processed glass cullet.', 'rian-cullet' ),
-			$rc_years
+			/* translators: %d: number of states */
+			__( 'Pan-India supply, with customers in %d+ states.', 'rian-cullet' ),
+			RC_STATES_SERVED
 		),
 	),
 );
@@ -54,9 +52,10 @@ $rc_timeline = array(
 				<p class="rc-body" style="margin-top:var(--rc-space-5)">
 					<?php
 					printf(
-						/* translators: %d: number of years */
-						esc_html__( 'Based in Delhi and operating in glass cullet for over %d years, the company has built its experience in the collection, sorting, processing and recycling of foreign and post-consumer glass cullet.', 'rian-cullet' ),
-						(int) $rc_years
+						/* translators: 1: founding year, 2: years of combined experience */
+						esc_html__( 'Based in Delhi and operating in glass cullet since %1$d, the company brings %2$d+ years of combined experience to the collection, sorting, processing and recycling of foreign and post-consumer glass cullet.', 'rian-cullet' ),
+						(int) RC_FOUNDED,
+						(int) RC_COMBINED_EXPERIENCE
 					);
 					?>
 				</p>

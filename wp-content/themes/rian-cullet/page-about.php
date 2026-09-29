@@ -14,14 +14,13 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-$rc_years = rc_years_of_experience();
-
 get_template_part(
 	'template-parts/sections/page-hero',
 	null,
 	array(
 		'eyebrow' => __( 'About', 'rian-cullet' ),
-		'title'   => __( 'Glass cullet from Delhi, since 1995.', 'rian-cullet' ),
+		/* translators: %d: founding year */
+		'title'   => sprintf( __( 'Glass cullet from Delhi, since %d.', 'rian-cullet' ), RC_FOUNDED ),
 		'lede'    => __( 'Collection, sorting, processing and recycling of foreign and post-consumer glass cullet for reuse in glass manufacturing.', 'rian-cullet' ),
 	)
 );
@@ -38,9 +37,10 @@ get_template_part(
 					<p class="rc-body">
 						<?php
 						printf(
-							/* translators: %d: number of years */
-							esc_html__( 'Rian Cullet, based in Delhi, was established in 1995 and has been operating in the field of glass cullet for over %d years.', 'rian-cullet' ),
-							(int) $rc_years
+							/* translators: 1: founding year, 2: years of combined experience */
+							esc_html__( 'Rian Cullet, based in Delhi, was established in %1$d and brings %2$d+ years of combined experience in the field of glass cullet.', 'rian-cullet' ),
+							(int) RC_FOUNDED,
+							(int) RC_COMBINED_EXPERIENCE
 						);
 						?>
 					</p>
@@ -48,7 +48,14 @@ get_template_part(
 						<?php esc_html_e( 'We specialise in the collection, sorting, processing and recycling of foreign and post-consumer glass cullets, making them suitable for reuse in glass manufacturing. Through systematic sorting and processing, we help convert waste glass into a valuable raw material that can be fed into glass furnaces.', 'rian-cullet' ); ?>
 					</p>
 					<p class="rc-body">
-						<?php esc_html_e( 'Over the years, Rian Cullet has served 35+ companies, building experience and trust within the glass manufacturing and recycling ecosystem.', 'rian-cullet' ); ?>
+						<?php
+						printf(
+							/* translators: 1: companies served, 2: states served */
+							esc_html__( 'Over the years, Rian Cullet has served %1$d+ companies across %2$d+ states, building experience and trust within the glass manufacturing and recycling ecosystem. Supply is available pan-India.', 'rian-cullet' ),
+							(int) RC_COMPANIES_SERVED,
+							(int) RC_STATES_SERVED
+						);
+						?>
 					</p>
 					<p class="rc-body">
 						<?php esc_html_e( 'Our work also contributes to reducing the amount of glass waste going to landfills, while creating an economically valuable source of recycled material.', 'rian-cullet' ); ?>

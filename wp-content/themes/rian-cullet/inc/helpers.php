@@ -10,18 +10,6 @@ declare( strict_types = 1 );
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Years of operation, derived from the founding year.
- *
- * Never hard-code this figure in a template. Deriving it means the site
- * cannot silently start advertising the wrong number of years.
- *
- * @return int
- */
-function rc_years_of_experience(): int {
-	return (int) ( (int) current_time( 'Y' ) - RC_FOUNDED );
-}
-
-/**
  * The registered address, as structured parts.
  *
  * Held in one place so the contact section, the footer and the
